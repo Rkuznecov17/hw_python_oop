@@ -83,7 +83,8 @@ class Running(Training):
         """Получить количество затраченных калорий."""
 
         mean_speed: float = Training.get_mean_speed(self)
-        spent_calories: float = (self.coeff_calorie_1 * mean_speed - self.coeff_calorie_2) * self.weight / Training.M_IN_KM * self.duration * 60
+        spent_calories: float = ("self.coeff_calorie_1 * mean_speed -" 
+                                 "self.coeff_calorie_2) * self.weight / Training.M_IN_KM * self.duration * 60"
         return spent_calories
 
 
@@ -121,7 +122,7 @@ class Swimming(Training):
                  duration: float,
                  weight: float,
                  length_pool: float,
-                count_pool: int) -> None:
+                 count_pool: int) -> None:
         super().__init__(action, duration, weight)
         self.length_pool = length_pool
         self.count_pool = count_pool
@@ -136,7 +137,7 @@ class Swimming(Training):
         """Получить количество затраченных калорий."""
 
         mean_speed: float = Swimming.get_mean_speed(self)
-        spent_calories: float = (mean_speed + self.coeff_calorie_1) * self.coeff_calorie_2 * self.weight 
+        spent_calories: float = (mean_speed + self.coeff_calorie_1) * self.coeff_calorie_2 * self.weight
         return spent_calories
 
 
@@ -144,7 +145,7 @@ def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
 
     type_dict = {'SWM': Swimming,
-                 'RUN': Running, 
+                 'RUN': Running,
                  'WLK': SportsWalking}
     return type_dict[workout_type](*data)
 
@@ -154,6 +155,7 @@ def main(training: Training) -> None:
 
     info = training.show_training_info()
     print(info.get_message())
+
 
 if __name__ == '__main__':
     packages = [
