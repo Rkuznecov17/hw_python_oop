@@ -1,5 +1,3 @@
-from pyparsing import Dict
-
 class InfoMessage:
     """Информационное сообщение о тренировке."""
 
