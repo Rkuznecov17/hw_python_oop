@@ -73,7 +73,7 @@ class Running(Training):
     coeff_calorie_2: int = 20
     training_type: str = 'Бег'
 
-   def __init__(self,
+    def __init__(self,
                  action: int,
                  duration: float,
                  weight: float) -> None:
