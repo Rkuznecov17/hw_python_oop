@@ -83,7 +83,7 @@ class Running(Training):
         """Получить количество затраченных калорий."""
 
         mean_speed: float = Training.get_mean_speed(self)
-        spent_calories: float = (self.coeff_calorie_1 * mean_speed - \
+        spent_calories: float = (self.coeff_calorie_1 * mean_speed - 
                                 self.coeff_calorie_2) * self.weight / Training.M_IN_KM * self.duration * 60
         return spent_calories
 
