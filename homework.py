@@ -141,15 +141,13 @@ class Swimming(Training):
         return spent_calories
 
 
-def read_package(workout_type: str, data: list[float]) -> Training:
+def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    workout_codes: dict[str, type[Training]] = {'SWM': Swimming,
-                                                'RUN': Running,
-                                                'WLK': SportsWalking}
-    if workout_type in workout_codes:
-        workout = workout_codes[workout_type](*data)
-        return workout
-    return None
+    
+    type_dict = {'SWM': Swimming, 
+                'RUN': Running, 
+                'WLK': SportsWalking}
+    return type_dict[workout_type](*data)
 
 def main(training: Training) -> None:
     """Главная функция."""
