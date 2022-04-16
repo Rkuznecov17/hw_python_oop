@@ -27,14 +27,14 @@ class Training:
 
     M_IN_KM: int = 1000
     LEN_STEP: float = 0.65
-    training_type: str =''
+    training_type: str = ''
 
     def __init__(self,
-                action: int,
-                duration: float,
-                weight: float,
-                ) -> None:
-        self.action =  action
+                 action: int,
+                 duration: float,
+                 weight: float,
+                 ) -> None:
+        self.action = action
         self.duration = duration
         self.weight = weight
 
@@ -59,23 +59,24 @@ class Training:
         """Вернуть информационное сообщение о выполненной тренировке."""
 
         letter = InfoMessage(self.__class__.__name__,
-                            self.duration, 
-                            self.get_distance(), 
-                            self.get_mean_speed(), 
-                            self.get_spent_calories())
+                             self.duration,
+                             self.get_distance(),
+                             self.get_mean_speed(),
+                             self.get_spent_calories())
         return letter
+
 
 class Running(Training):
     """Тренировка: бег."""
 
     coeff_calorie_1: int = 18
     coeff_calorie_2: int = 20
-    training_type: str ='Бег'
+    training_type: str = 'Бег'
     
-    def __init__(self, 
-                action: int, 
-                duration: float, 
-                weight: float) -> None:
+    def __init__(self,
+                 action: int,
+                 duration: float,
+                 weight: float) -> None:
         super().__init__(action, duration, weight)
 
     def get_spent_calories(self) -> float:
@@ -84,6 +85,7 @@ class Running(Training):
         mean_speed: float = Training.get_mean_speed(self)
         spent_calories: float = (self.coeff_calorie_1 * mean_speed - self.coeff_calorie_2) * self.weight / Training.M_IN_KM * self.duration * 60
         return spent_calories
+
 
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
