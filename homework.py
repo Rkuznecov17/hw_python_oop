@@ -21,9 +21,9 @@ class InfoMessage:
                 f'Ср. скорость: {self.speed:.3f} км/ч; '
                 f'Потрачено ккал: {self.calories:.3f}.')
 
+
 class Training:
     """Базовый класс тренировки."""
-
 
     M_IN_KM: int = 1000
     LEN_STEP: float = 0.65
@@ -57,9 +57,9 @@ class Training:
                            self.get_mean_speed(),
                            self.get_spent_calories())
 
+
 class Running(Training):
     """Тренировка: бег."""
-
 
     RUN_MULTIPLIER_COEF_1: int = 18
     RUN_MULTIPLIER_COEF_2: int = 20
@@ -71,9 +71,9 @@ class Running(Training):
                 - self.RUN_MULTIPLIER_COEF_2) * self.weight
                 / self.M_IN_KM * self.duration * self.MINUTES_IN_HOUR)
 
+
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
-
 
     WLK_MULTIPLIER_COEF_1: float = 0.035
     WLK_MULTIPLIER_COEF_2: float = 0.029
@@ -113,20 +113,20 @@ class Swimming(Training):
 
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
-        return (self.length_pool * self.count_pool 
+        return (self.length_pool * self.count_pool
                 / self.M_IN_KM / self.duration)
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        return ((self.get_mean_speed() + self.SWM_MULTIPLIER_COEF_1) 
+        return ((self.get_mean_speed() + self.SWM_MULTIPLIER_COEF_1)
                 * self.SWM_MULTIPLIER_COEF_2 * self.weight)
 
 
 def read_package(workout_type: str,data: list[int]) -> Training:
     """Прочитать данные полученные от датчиков."""
     workout_types: dict[str,type[Training]] = {'SWM': Swimming,
-                                                'RUN': Running,
-                                                'WLK': SportsWalking}
+                                               'RUN': Running,
+                                               'WLK': SportsWalking}
     if workout_type in workout_types:
         workout = workout_types[workout_type](*data)
         return workout
@@ -136,6 +136,7 @@ def main(training: Training) -> None:
     """Главная функция."""
     info = training.show_training_info()
     print(info.get_message())
+
 
 if __name__ == '__main__':
     packages = [
