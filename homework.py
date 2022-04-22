@@ -128,9 +128,9 @@ def read_package(workout_type: str, data: list[int]) -> Training:
                                                 'RUN': Running,
                                                 'WLK': SportsWalking}
     if workout_type in workout_types:
-        workout = workout_types[workout_type](*data)
-        return workout
-    return None
+        return workout_types[workout_type](*data) 
+    else:
+        raise ValueError("Неизвестный класс тренировки")
 
 
 def main(training: Training) -> None:
