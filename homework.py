@@ -89,7 +89,7 @@ class SportsWalking(Training):
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         return ((self.WLK_MULTIPLIER_COEF_1 * self.weight
-                + (pow(self.get_mean_speed(),2) // self.height)
+                + (pow(self.get_mean_speed(), 2) // self.height)
                 * self.WLK_MULTIPLIER_COEF_2 * self.weight)
                 * self.duration * self.MINUTES_IN_HOUR)
 
@@ -122,9 +122,9 @@ class Swimming(Training):
                 * self.SWM_MULTIPLIER_COEF_2 * self.weight)
 
 
-def read_package(workout_type: str,data: list[int]) -> Training:
+def read_package(workout_type: str, data: list[int]) -> Training:
     """Прочитать данные полученные от датчиков."""
-    workout_types: dict[str,type[Training]] = {'SWM': Swimming,
+    workout_types: dict[str, type[Training]] = {'SWM': Swimming,
                                                'RUN': Running,
                                                'WLK': SportsWalking}
     if workout_type in workout_types:
@@ -132,11 +132,11 @@ def read_package(workout_type: str,data: list[int]) -> Training:
         return workout
     return None
 
+
 def main(training: Training) -> None:
     """Главная функция."""
     info = training.show_training_info()
     print(info.get_message())
-
 
 if __name__ == '__main__':
     packages = [
