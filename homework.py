@@ -1,5 +1,3 @@
-from dataclasses import *
-@dataclass
 class InfoMessage:
     """Информационное сообщение о тренировке."""
 
@@ -23,7 +21,6 @@ class InfoMessage:
                 f'Ср. скорость: {self.speed:.3f} км/ч; '
                 f'Потрачено ккал: {self.calories:.3f}.')
         
-@dataclass
 class Training:
     """Базовый класс тренировки."""
 
