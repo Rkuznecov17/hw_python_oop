@@ -125,8 +125,8 @@ class Swimming(Training):
 def read_package(workout_type: str, data: list[int]) -> Training:
     """Прочитать данные полученные от датчиков."""
     workout_types: dict[str, type[Training]] = {'SWM': Swimming,
-                                               'RUN': Running,
-                                               'WLK': SportsWalking}
+                                                'RUN': Running,
+                                                'WLK': SportsWalking}
     if workout_type in workout_types:
         workout = workout_types[workout_type](*data)
         return workout
@@ -137,7 +137,6 @@ def main(training: Training) -> None:
     """Главная функция."""
     info = training.show_training_info()
     print(info.get_message())
-
 if __name__ == '__main__':
     packages = [
         ('SWM', [720, 1, 80, 25, 40]),
