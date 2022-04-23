@@ -122,9 +122,9 @@ class Swimming(Training):
                 * self.SWM_MULTIPLIER_COEF_2 * self.weight)
 
 
-def read_package(workout_type: str, data: list[int]) -> Training:
+def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    workout_types: dict[str, type[Training]] = {'SWM': Swimming,
+    workout_types: dict[str, Type[Training]] = {'SWM': Swimming,
                                                 'RUN': Running,
                                                 'WLK': SportsWalking}
     if workout_type in workout_types:
