@@ -1,4 +1,4 @@
-from typing import List, Type
+from typing import Dict, List, Type
 
 
 class InfoMessage:
@@ -51,7 +51,6 @@ class Training:
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
         return InfoMessage(self.__class__.__name__,
@@ -66,7 +65,6 @@ class Running(Training):
 
     RUN_MULTIPLIER_COEF_1: int = 18
     RUN_MULTIPLIER_COEF_2: int = 20
-    TRAINING_TYPE: str = 'Бег'
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
@@ -127,13 +125,12 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: List[int]) -> Training:
     """Прочитать данные полученные от датчиков."""
-    workout_types: dict[str, Type[Training]] = {'SWM': Swimming,
+    workout_types: Dict[str, Type[Training]] = {'SWM': Swimming,
                                                 'RUN': Running,
                                                 'WLK': SportsWalking}
     if workout_type in workout_types:
         return workout_types[workout_type](*data)
-    else:
-        raise ValueError("Неизвестный класс тренировки")
+    raise ValueError("Неизвестный класс тренировки")
 
 
 def main(training: Training) -> None:
